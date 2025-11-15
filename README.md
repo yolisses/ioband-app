@@ -23,4 +23,6 @@ pnpm run dev
 npx local-ssl-proxy --source 3001 --target 3000
 ```
 
-5. Open https://localhost:3001/ in the browser
+5. Open [https://localhost:3001/](https://localhost:3001/) in the browser
+
+6. Enable Experimental Web Platform features: [chrome://flags/#enable-experimental-web-platform-features](chrome://flags/#enable-experimental-web-platform-features)
