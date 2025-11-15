@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <body>
+    <button id="connect">Connect to ESP32</button>
+    <p id="output"></p>
+
+    <script>
+      document.getElementById("connect").onclick = async () => {
+        try {
+          const device = await navigator.bluetooth.requestDevice({
+            filters: [{ name: "ESP32-WebBLE" }],
+            optionalServices: ["12345678-1234-1234-1234-1234567890ab"],
+          });
+
+          const server = await device.gatt.connect();
+          const service = await server.getPrimaryService(
+            "12345678-1234-1234-1234-1234567890ab",
+          );
+
+          const characteristic = await service.getCharacteristic(
+            "abcdefab-1234-5678-1234-abcdefabcdef",
+          );
+
+          // Read value from ESP32
+          const value = await characteristic.readValue();
+          const text = new TextDecoder().decode(value);
+          document.getElementById("output").textContent = "Received: " + text;
+
+          // Example: write to ESP32
+          await characteristic.writeValue(
+            new TextEncoder().encode("Hello ESP32!"),
+          );
+        } catch (error) {
+          console.error(error);
+          document.getElementById("output").textContent = error;
+        }
+      };
+    </script>
+  </body>
+</html>
