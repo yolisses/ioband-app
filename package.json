@@ -2,6 +2,7 @@
   "name": "ioband-app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -20,6 +21,9 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.0.3",
+    "fs": "0.0.1-security",
+    "http-proxy": "^1.18.1",
+    "https": "^1.0.0",
     "prettier": "3.6.2",
     "tailwindcss": "^4",
     "typescript": "^5"
